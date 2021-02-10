@@ -1,4 +1,4 @@
 package ru.geekbrains.java2;
 
-public class Wall {
+public class Wall implements Obstacle {
 }

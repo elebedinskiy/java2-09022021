@@ -1,4 +1,4 @@
 package ru.geekbrains.java2;
 
-public class Track {
+public class Track implements Obstacle {
 }
