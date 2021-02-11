@@ -1,15 +1,10 @@
 package ru.geekbrains.java2;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
-	    // write your code here
-
         /*
         1. Создать массив с набором слов (10-20 слов, должны встречаться повторяющиеся).
         Найти и вывести список уникальных слов, из которых состоит массив (дубликаты не считаем).
@@ -27,10 +22,10 @@ public class Main {
          */
 
         // Создать массив с набором слов (10-20 слов, должны встречаться повторяющиеся).
-        String[] wordsArray = {"Hello", "Yes", "No", "Words", "Game", "Display", "Notebook", "Mouse", "Virus",
-        "Moscow", "Mother", "Car", "Job", "Platform", "Apple", "Year", "Game", "Notebook", "Car", "Job"};
+        String[] wordsArray = {"Hello", "Mouse", "No", "Mouse", "Mouse", "Notebook", "Words", "Game", "Display",
+                "Notebook", "Notebook", "Mouse", "Virus", "Moscow", "Job", "Job", "Job", "Job", "Job"};
         ArrayList<String> wordsList = new ArrayList<>();
-        Collections.addAll(wordsList, wordsArray);
+        Collections.addAll(wordsList, wordsArray); //  Заполнили список значениями массива
         System.out.println("Коллекция слов (содержит повторы): " + wordsList);
 
         // Найти и вывести список уникальных слов, из которых состоит массив (дубликаты не считаем).
@@ -38,6 +33,19 @@ public class Main {
         System.out.println("Коллекция слов (содержит уникальные значения): " + wordsHashSet);
 
         // Посчитать сколько раз встречается каждое слово.
+        Map<String, Integer> calcWords = new HashMap<>(); // сюда будем записывать результат подсчета
+        Iterator<String> iter = wordsHashSet.iterator(); // создаем итератор
+        while (iter.hasNext()){
+            String str = iter.next();
+            int i = 1;
+            do{
+                if (wordsList.contains(str)){
+                    calcWords.put(str, i++);
+                    wordsList.remove(wordsList.indexOf(str)); // уберем элемент, чтобы повторить поиск
+                }
+            } while (wordsList.contains(str));
+        }
+        System.out.println("Сколько раз встречаются слова: " + calcWords);
 
     }
 }
