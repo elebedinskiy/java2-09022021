@@ -27,15 +27,15 @@ public class Main {
          */
 
         // Создать массив с набором слов (10-20 слов, должны встречаться повторяющиеся).
-        String[] arrayWords = {"Hello", "Yes", "No", "Words", "Game", "Display", "Notebook", "Mouse", "Virus",
+        String[] wordsArray = {"Hello", "Yes", "No", "Words", "Game", "Display", "Notebook", "Mouse", "Virus",
         "Moscow", "Mother", "Car", "Job", "Platform", "Apple", "Year", "Game", "Notebook", "Car", "Job"};
-        ArrayList<String> words = new ArrayList<>();
-        Collections.addAll(words, arrayWords);
-        System.out.println("Коллекция слов (содержит повторы): " + words);
+        ArrayList<String> wordsList = new ArrayList<>();
+        Collections.addAll(wordsList, wordsArray);
+        System.out.println("Коллекция слов (содержит повторы): " + wordsList);
 
         // Найти и вывести список уникальных слов, из которых состоит массив (дубликаты не считаем).
-        HashSet<String> uniqueWords = new HashSet<>(words); // инициировали HashSet значениями из ArrayList
-        System.out.println("Коллекция слов (содержит уникальные значения): " + uniqueWords);
+        HashSet<String> wordsHashSet = new HashSet<>(wordsList); // инициировали HashSet значениями из ArrayList
+        System.out.println("Коллекция слов (содержит уникальные значения): " + wordsHashSet);
 
         // Посчитать сколько раз встречается каждое слово.
 
