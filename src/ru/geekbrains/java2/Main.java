@@ -1,56 +1,53 @@
 package ru.geekbrains.java2;
 
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args) {
-	    // write your code here
-        /*
-        1. Создайте три класса Человек, Кот, Робот, которые не наследуются от одного класса.
-        Эти классы должны уметь бегать и прыгать (методы просто выводят информацию о действии в консоль).
 
-        2. Создайте два класса: беговая дорожка и стена, при прохождении через которые,
-        участники должны выполнять соответствующие действия (бежать или прыгать),
-        результат выполнения печатаем в консоль (успешно пробежал, не смог пробежать и т.д.).
+        Member[] members = {
+            new People("Ivan", 5000,2),
+            new Cat("Barsik",100, 1.8f),
+            new Robot("r2d2",10000,3)
+        };
 
-        3. Создайте два массива: с участниками и препятствиями, и заставьте всех участников
-        пройти этот набор препятствий.
-
-        4. У препятствий есть длина (для дорожки) или высота (для стены), а участников ограничения
-        на бег и прыжки. Если участник не смог пройти одно из препятствий, то дальше по списку
-        он препятствий не идет.
-        */
-        People people1 = new People();
-        Cat cat1 = new Cat();
-        Robot robot1 = new Robot();
-        Member[] members = {people1, cat1, robot1};
-
-        Track track1 = new Track();
-        Wall wall1 = new Wall();
-        Obstacle[] obstacles = {track1, wall1};
+        Obstacle[] obstacles = {
+            new Track(150f),
+            new Wall(1.5f),
+            new Track(10000f),
+            new Wall(2.5f),
+            new Track(5000f)
+        };
 
         overcomeObstacles(members, obstacles);
+
     }
 
     static void overcomeObstacles (Member[] members, Obstacle[] obstacles){
 
-        // перебираем участников
-        for (int i = 0; i < members.length; i++){
+        boolean[] log = new boolean[members.length];
+        Arrays.fill(log, true);
 
-            // перебираем препятствия
-            for (int j = 0; j < obstacles.length; j++) {
+        for (int i = 0; i < obstacles.length; i++){
 
-                // если препятствие = дорожка, то пробуем бежать
-                if (obstacles[j] instanceof Track) {
-                    // для само проверки
-                    System.out.printf("Участник: " + members[i].getClass() + " Препятствие: " + obstacles[j].getClass() + " ");
-                    members[i].run();
+            System.out.println(">>> Obstacle #" + (i + 1) + " <<<");
+
+            for (int j = 0; j < members.length; j++) {
+
+                if (obstacles[i] instanceof Track && log[j]) {
+                    if(!members[j].run(obstacles[i])) log[j] = false;
                 }
-                // если препятствие = стена, то пробуем прыгать
-                else if (obstacles[j] instanceof Wall) {
-                    System.out.printf("Участник: " + members[i].getClass() + " Препятствие: " + obstacles[j].getClass() + " ");
-                    members[i].jump();
+                else if (obstacles[i] instanceof Wall && log[j]) {
+                    if(!members[j].jump(obstacles[i])) log[j] = false;
                 }
             }
+            System.out.println();
+        }
+
+        System.out.println("!!! Winners !!!");
+        for (int i = 0; i < log.length; i++){
+            if (log[i]) System.out.println("member #" + (i + 1)+ ", name: " + members[i].getName());
         }
     }
 

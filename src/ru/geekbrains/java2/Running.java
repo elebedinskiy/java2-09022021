@@ -2,6 +2,6 @@ package ru.geekbrains.java2;
 
 public interface Running {
 
-    void run();
+    boolean run(Obstacle obstacle);
 
 }
