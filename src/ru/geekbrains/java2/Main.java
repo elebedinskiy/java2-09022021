@@ -1,5 +1,9 @@
 package ru.geekbrains.java2;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -20,5 +24,14 @@ public class Main {
         через консоль и т.д.). Консоль желательно не использовать (в том числе Scanner), тестировать просто
         из метода main() прописывая add() и get().
          */
+        String[] arrayWords = {"Hello", "Yes", "No", "Words", "Game", "Display", "Notebook", "Mouse", "Virus",
+        "Moscow", "Mother", "Car", "Job", "Platform", "Apple", "Year", "Game", "Notebook", "Car", "Job"};
+        ArrayList<String> words = new ArrayList<>();
+        for (int i = 0; i < arrayWords.length; i++){
+            words.add(arrayWords[i]);
+        }
+        System.out.println("Коллекция слов (содержит повторы): " + words);
+        HashSet<String> uniqueWords = new HashSet<>(words); // инициировали HashSet значениями из ArrayList
+        System.out.println("Коллекция слов (содержит уникальные значения): " + uniqueWords);
     }
 }
