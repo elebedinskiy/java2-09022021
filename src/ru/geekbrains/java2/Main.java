@@ -1,6 +1,7 @@
 package ru.geekbrains.java2;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,14 +25,19 @@ public class Main {
         через консоль и т.д.). Консоль желательно не использовать (в том числе Scanner), тестировать просто
         из метода main() прописывая add() и get().
          */
+
+        // Создать массив с набором слов (10-20 слов, должны встречаться повторяющиеся).
         String[] arrayWords = {"Hello", "Yes", "No", "Words", "Game", "Display", "Notebook", "Mouse", "Virus",
         "Moscow", "Mother", "Car", "Job", "Platform", "Apple", "Year", "Game", "Notebook", "Car", "Job"};
         ArrayList<String> words = new ArrayList<>();
-        for (int i = 0; i < arrayWords.length; i++){
-            words.add(arrayWords[i]);
-        }
+        Collections.addAll(words, arrayWords);
         System.out.println("Коллекция слов (содержит повторы): " + words);
+
+        // Найти и вывести список уникальных слов, из которых состоит массив (дубликаты не считаем).
         HashSet<String> uniqueWords = new HashSet<>(words); // инициировали HashSet значениями из ArrayList
         System.out.println("Коллекция слов (содержит уникальные значения): " + uniqueWords);
+
+        // Посчитать сколько раз встречается каждое слово.
+
     }
 }
