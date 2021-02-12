@@ -5,32 +5,17 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        /*
-        1. Создать массив с набором слов (10-20 слов, должны встречаться повторяющиеся).
-        Найти и вывести список уникальных слов, из которых состоит массив (дубликаты не считаем).
-        Посчитать сколько раз встречается каждое слово.
 
-        2. Написать простой класс Телефонный Справочник, который хранит в себе список фамилий и телефонных номеров.
-        В этот телефонный справочник с помощью метода add() можно добавлять записи. С помощью метода get()
-        искать номер телефона по фамилии. Следует учесть, что под одной фамилией может быть несколько телефонов
-        (в случае однофамильцев), тогда при запросе такой фамилии должны выводиться все телефоны.
-
-        Желательно как можно меньше добавлять своего, чего нет в задании (т.е. не надо в телефонную запись
-        добавлять еще дополнительные поля (имя, отчество, адрес), делать взаимодействие с пользователем
-        через консоль и т.д.). Консоль желательно не использовать (в том числе Scanner), тестировать просто
-        из метода main() прописывая add() и get().
-         */
-
+        System.out.println("Task #1");
         // Создать массив с набором слов (10-20 слов, должны встречаться повторяющиеся).
-        String[] wordsArray = {"Hello", "Mouse", "No", "Mouse", "Mouse", "Notebook", "Words", "Game", "Display",
-                "Notebook", "Notebook", "Mouse", "Virus", "Moscow", "Job", "Job", "Job", "Job", "Job"};
-        ArrayList<String> wordsList = new ArrayList<>();
-        Collections.addAll(wordsList, wordsArray); //  Заполнили список значениями массива
-        System.out.println("Коллекция слов (содержит повторы): " + wordsList);
+        ArrayList<String> wordsList = new ArrayList<>(Arrays.asList(
+                "Hello", "Mouse", "Job", "Mouse", "Mouse", "Notebook", "Words", "Game", "Job", "Job",
+                "Notebook", "Notebook", "Mouse", "Job", "Moscow", "Job", "Job", "Job", "Job", "Job"));
+        System.out.println("Коллекция из " + wordsList.size() + " слов (содержит повторы): " + wordsList);
 
         // Найти и вывести список уникальных слов, из которых состоит массив (дубликаты не считаем).
         HashSet<String> wordsHashSet = new HashSet<>(wordsList); // инициировали HashSet значениями из ArrayList
-        System.out.println("Коллекция слов (содержит уникальные значения): " + wordsHashSet);
+        System.out.println("Коллекция из " + wordsHashSet.size() + " слов (содержит уникальные значения): " + wordsHashSet);
 
         // Посчитать сколько раз встречается каждое слово.
         Map<String, Integer> calcWords = new HashMap<>(); // сюда будем записывать результат подсчета
@@ -47,5 +32,22 @@ public class Main {
         }
         System.out.println("Сколько раз встречаются слова: " + calcWords);
 
+        System.out.println();
+
+        System.out.println("Task #2");
+        Phonebook item1 = new Phonebook("Ivanov", "+7-903-000-55-22");
+        Phonebook item2 = new Phonebook("Ivanov", "+7-903-888-66-33");
+        Phonebook item3 = new Phonebook("Petrov", "+7-910-777-77-77");
+
+        HashMap<Phonebook, Phonebook> phonesHM = new HashMap<>();
+        phonesHM.put(item1, item1);
+        phonesHM.put(item2, item2);
+        phonesHM.put(item3, item3);
+
+        for (Map.Entry<Phonebook, Phonebook> o : phonesHM.entrySet()){
+            if (o.getKey().getFamily().equals("Ivanov")){
+                System.out.println(o.getValue().getFamily() + ", " + o.getValue().getPhone());
+            }
+        }
     }
 }
