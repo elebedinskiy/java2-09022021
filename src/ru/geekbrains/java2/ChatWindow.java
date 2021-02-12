@@ -1,13 +1,22 @@
 package ru.geekbrains.java2;
 
-public class ChatWindow {
+import javax.swing.*;
 
-            /*
-        Создать окно для клиентской части чата: большое текстовое поле для отображения
-        переписки в центре окна. Однострочное текстовое поле для ввода сообщений и кнопка
-        для отсылки сообщений на нижней панели. Сообщение должно отсылаться либо по нажатию
-        кнопки на форме, либо по нажатию кнопки Enter. При «отсылке» сообщение перекидывается
-        из нижнего поля в центральное.
-         */
+public class ChatWindow extends JFrame {
 
+    ChatWindow(){
+        setTitle("Chat window");
+        setSize(600, 400);
+        setResizable(false);
+        setLocation(600,400);
+        setVisible(true);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        JTextArea textArea = new JTextArea();
+        JTextField textField = new JTextField();
+        JButton button = new JButton("Ок");
+
+
+
+    }
 }
