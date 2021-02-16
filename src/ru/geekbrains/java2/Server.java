@@ -29,8 +29,15 @@ public class Server {
                             e.printStackTrace();
                         }
                         if (str.equals("/end")) {
-                            break;
+                            try {
+                                out.writeUTF("Сервер завершил свою работу");
+                                out.writeUTF("/exit");
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            System.exit(0);
                         }
+                        System.out.println("User: " + str);
                         try {
                             out.writeUTF("Эхо: " + str);
                         } catch (IOException e) {
@@ -59,10 +66,7 @@ public class Server {
             });
             inputMessageOnServer.start();
 
-            inputMessageFronNetwork.join();
-            inputMessageOnServer.join();
-
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
